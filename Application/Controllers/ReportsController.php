@@ -381,6 +381,7 @@ class ReportsController extends DashboardController
         $this->loopMonth($result, $article);
 
         $view->setData('current', $currentYear);
+        $view->setData('currentMonth', $currentMonth);
         $view->setData('service', $service);
         $view->setData('warehouse', $warehouse);
         $view->setData('article', $article);

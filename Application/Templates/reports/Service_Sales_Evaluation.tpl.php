@@ -3,6 +3,7 @@ $service = $this->getData('service');
 $warehouse = $this->getData('warehouse');
 $article = $this->getData('article');
 $current = $this->getData('current');
+$currentMonth = $this->getData('currentMonth');
 
 $serviceAcc = [];
 
@@ -43,10 +44,14 @@ foreach($article as $year => $arr) {
     }
 }
 
-for($i = 1; $i <= 12; $i++) {
-    $warehouse[$current][$i] = ($warehouse[$current][$i] ?? 0) + ($article[$current][$i] ?? 0) * 0.3;
+for($year = $current-2; $year <= $current; $year++) {
+    for($i = 1; $i <= 12; $i++) {
+        if($year < $current || $i <= $currentMonth) {
+            $warehouse[$year][$i] = ($warehouse[$year][$i] ?? 0) + ($article[$year][$i] ?? 0) * 0.3;
+            $warehouseAcc[$year][$i] = ($warehouseAcc[$year][$i-1] ?? 0) + $warehouse[$year][$i];
+        }
+    }
 }
-
 ?>
 
 <h1>Service Department</h1>
