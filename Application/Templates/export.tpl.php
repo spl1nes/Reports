@@ -6,5 +6,3 @@ foreach ($dispatch as $view) {
 		echo $view->render();
 	}
 }
-
-echo 'aaaaaaaaaaaaaaaaa';
